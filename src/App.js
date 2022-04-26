@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, Suspense, lazy } from "react";
+import { DataProvider } from './context/DataContext';
+import {BrowserRouter , Routes, Route } from 'react-router-dom';
+import './assets/css/styles.css';
+import './assets/css/styleSwipe.css';
+import Home from "./page/Home";
+import About from "./page/About";
+import Service from "./page/Service";
+import Contact from "./page/Contact";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <>
+        <DataProvider>
+            <BrowserRouter>
+              <Routes>
+                      <Route path="/" exact element={<Home />} />
+                      <Route path="/about" exact element={<About />} />
+                      <Route path="/service" exact element={<Service />} />
+                      <Route path="/contact" exact element={<Contact />} />
+                </Routes>
+            </BrowserRouter>
+        </DataProvider>
+        </>
   );
 }
 
